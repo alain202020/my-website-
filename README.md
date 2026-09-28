@@ -3,16 +3,16 @@
 Persoonlijke website met informatie over mij (profiel, projecten, werkervaring, opleiding,
 vaardigheden) en een formulier om een afspraak te maken.
 
-Gemaakt met alleen HTML, CSS en JavaScript — geen build-stap nodig.
+Alles staat in **één bestand**: `index.html` (HTML, CSS en JavaScript). Geen build-stap nodig.
 
-## Bestanden
+## Teksten aanpassen
 
-| Bestand | Inhoud |
-| --- | --- |
-| `index.html` | Alle tekst en secties van de website |
-| `assets/style.css` | Opmaak (kleuren, lettertype, lichte en donkere modus) |
-| `assets/script.js` | Mobiel menu, animaties en het afsprakenformulier |
-| `assets/omar.jpg` | Profielfoto |
+Open `index.html` en zoek naar `const PROFILE = {` (onderaan het bestand).
+Daar staan al je gegevens: naam, titel, over mij, werkervaring, opleiding, projecten,
+vaardigheden, talen, e-mail en LinkedIn. Pas de tekst tussen de aanhalingstekens aan en sla op.
+
+- Kleuren aanpassen: bovenaan in `<style>` bij `:root` (`--primary` en `--accent`).
+- Foto: `assets/omar.jpg`. Zet `photo: ""` om je initialen te tonen.
 
 ## Online zetten met GitHub Pages
 

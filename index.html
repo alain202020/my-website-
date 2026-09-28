@@ -4,308 +4,566 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Omar Hassan — Business IT Management</title>
-  <meta name="description" content="Omar Hassan, student Business IT Management aan Hogeschool Inholland. Digitale innovatie &amp; AI, UX-strategie en Power Platform. Op zoek naar een stage of startersfunctie in IT.">
-  <meta name="theme-color" content="#0f172a">
-  <meta property="og:title" content="Omar Hassan — Business IT Management">
-  <meta property="og:description" content="Digitale innovatie &amp; AI · UX-strategie · Power Platform">
-  <meta property="og:image" content="assets/omar.jpg">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Portfolio van Omar Hassan, student Business IT Management aan Hogeschool Inholland Amsterdam. Power BI, Power Apps en digitale transformatie. Op zoek naar een stage in Amsterdam (februari – juni).">
+  <meta name="theme-color" content="#0f3d3e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f3d3e'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' font-weight='700' fill='%23fff' text-anchor='middle'%3EOM%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       KLEUREN & BASIS — pas hier de kleuren van de site aan
+       ========================================================= */
+    :root {
+      --bg: #fafaf7;
+      --bg-alt: #f1f3ef;
+      --surface: #ffffff;
+      --text: #16201f;
+      --muted: #5c6866;
+      --border: #e2e6e1;
+      --primary: #0f3d3e;        /* hoofdkleur (donker petrol) */
+      --primary-soft: #e3eeec;
+      --accent: #c8813a;         /* accentkleur (warm oker) */
+      --on-primary: #ffffff;
+      --shadow: 0 12px 32px -16px rgba(15, 61, 62, .25);
+      --radius: 16px;
+      --max: 1080px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1515;
+        --bg-alt: #131d1d;
+        --surface: #182423;
+        --text: #e7eeec;
+        --muted: #9db0ad;
+        --border: #25403f;
+        --primary: #7cc6bd;
+        --primary-soft: #1d3432;
+        --accent: #e0a15e;
+        --on-primary: #0e1515;
+        --shadow: 0 12px 32px -16px rgba(0, 0, 0, .7);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { margin: 0 0 .5rem; line-height: 1.2; }
+    h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -.01em; }
+    h1 { font-size: clamp(2.5rem, 7vw, 4.2rem); }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; }
+    p { margin: 0 0 1rem; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    .eyebrow {
+      font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin: 0 0 .6rem;
+    }
+    .muted { color: var(--muted); }
+
+    /* Knoppen */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .8rem 1.4rem; border-radius: 999px;
+      background: var(--primary); color: var(--on-primary);
+      font: inherit; font-weight: 600; border: 2px solid var(--primary); cursor: pointer;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); opacity: .92; }
+    .btn-ghost { background: transparent; color: var(--primary); }
+    .btn-small { padding: .45rem 1rem; font-size: .9rem; }
+
+    /* Navigatie */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 1.4rem; color: var(--text); }
+    .logo:hover { text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a:not(.btn) { color: var(--muted); font-size: .95rem; font-weight: 500; }
+    .nav-links a:not(.btn):hover { color: var(--text); text-decoration: none; }
+    .nav-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; margin: 5px 0; background: var(--text); }
+    @media (max-width: 800px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        padding: .5rem 20px 1rem; background: var(--bg); border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: .7rem 0; }
+      .nav-links .btn { justify-content: center; margin-top: .5rem; }
+    }
+
+    /* Header / hero */
+    .hero { padding: 88px 0 80px; }
+    .hero-inner { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+    .hero-title { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--muted); margin: .8rem 0 1.4rem; max-width: 34ch; }
+    .status {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .5rem 1rem; border-radius: 999px;
+      background: var(--primary-soft); color: var(--primary); font-weight: 600; font-size: .92rem;
+    }
+    .status::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%; background: #2fa36b;
+      box-shadow: 0 0 0 4px color-mix(in srgb, #2fa36b 25%, transparent);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.8rem; }
+    .hero-meta { list-style: none; padding: 0; margin: 1.6rem 0 0; display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; color: var(--muted); font-size: .92rem; }
+    .photo-wrap { position: relative; justify-self: center; width: min(320px, 100%); aspect-ratio: 1; }
+    .photo-wrap::before {
+      content: ""; position: absolute; inset: 14px -14px -14px 14px;
+      border-radius: 28px; border: 2px solid var(--accent);
+    }
+    .photo, .initials {
+      position: relative; width: 100%; height: 100%; border-radius: 28px; object-fit: cover;
+      box-shadow: var(--shadow); background: var(--primary);
+    }
+    .initials {
+      display: grid; place-items: center; color: var(--on-primary);
+      font-family: "Fraunces", Georgia, serif; font-size: 5rem;
+    }
+    @media (max-width: 800px) {
+      .hero { padding: 56px 0 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .photo-wrap { width: min(240px, 80%); grid-row: 1; justify-self: start; }
+    }
+
+    /* Secties */
+    section.block { padding: 88px 0; }
+    section.alt { background: var(--bg-alt); }
+    @media (max-width: 800px) { section.block { padding: 64px 0; } }
+    .two-col { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; gap: 8px; } }
+    .about p { color: var(--muted); font-size: 1.05rem; }
+    .about strong { color: var(--text); font-weight: 600; }
+    .interests { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 1.4rem 0 0; }
+
+    /* Kaarten & labels */
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px 26px; box-shadow: var(--shadow);
+    }
+    .card p { color: var(--muted); margin: 0; }
+    .sub { color: var(--primary); font-weight: 600; font-size: .95rem; margin: 0 0 .6rem !important; }
+    .tag {
+      display: inline-block; padding: .3rem .75rem; border-radius: 999px;
+      background: var(--primary-soft); color: var(--primary); font-size: .82rem; font-weight: 600;
+    }
+    .date { font-size: .85rem; font-weight: 600; color: var(--muted); }
+
+    /* Tijdlijn */
+    .timeline { list-style: none; padding: 0; margin: 0; position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+    .timeline li { position: relative; padding-left: 40px; margin-bottom: 24px; }
+    .timeline li:last-child { margin-bottom: 0; }
+    .timeline li::before {
+      content: ""; position: absolute; left: 0; top: 26px; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--accent);
+    }
+    .timeline .card-head { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; align-items: baseline; }
+
+    /* Grids */
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .project { display: flex; flex-direction: column; border-top: 3px solid var(--accent); transition: transform .2s ease; }
+    .project:hover { transform: translateY(-4px); }
+    .project .num { font-family: "Fraunces", Georgia, serif; color: var(--accent); font-size: 1.3rem; margin-bottom: .4rem; }
+    .project .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px dashed var(--border); }
+    .project p { flex: 1; }
+    .subhead { margin: 48px 0 1rem; font-size: 1.2rem; }
+
+    /* Vaardigheden & talen */
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: .6rem 0 0; }
+    .langs { grid-column: 1 / -1; }
+    .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 48px; margin-top: .4rem; }
+    .lang { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: .7rem 0; border-bottom: 1px solid var(--border); }
+    .level { display: flex; gap: 4px; }
+    .level i { flex-shrink: 0; width: 18px; height: 6px; border-radius: 3px; background: var(--border); }
+    .level i.on { background: var(--primary); }
+    .lang-label { font-size: .85rem; color: var(--muted); margin-right: 10px; }
+
+    /* Contact */
+    .contact-box { text-align: center; max-width: 640px; margin: 0 auto; }
+    .contact-box h2 { margin-bottom: 1rem; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 1.8rem; }
+    .copy-msg { min-height: 1.4em; margin-top: .8rem; font-size: .9rem; color: var(--muted); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: .9rem; }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    /* Animatie bij scrollen */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal.visible.project:hover { transform: translateY(-4px); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ============ NAVIGATIE ============ -->
   <header class="nav" id="top">
     <div class="container nav-inner">
-      <a href="#top" class="logo" aria-label="Naar boven">OH<span>.</span></a>
-      <button class="nav-toggle" aria-label="Menu openen" aria-expanded="false" aria-controls="nav-links">
+      <a href="#top" class="logo" aria-label="Naar boven">OM<span>.</span></a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
       <nav id="nav-links" class="nav-links">
         <a href="#over">Over mij</a>
-        <a href="#projecten">Projecten</a>
         <a href="#ervaring">Ervaring</a>
         <a href="#opleiding">Opleiding</a>
+        <a href="#projecten">Projecten</a>
         <a href="#vaardigheden">Vaardigheden</a>
-        <a href="#contact" class="btn btn-small">Afspraak maken</a>
+        <a href="#contact" class="btn btn-small">Neem contact op</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- ============ 1. HEADER ============ -->
     <section class="hero">
       <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="eyebrow">Student Business IT Management</p>
-          <h1>Omar Hassan</h1>
-          <p class="lead">
-            <strong>Digitale innovatie &amp; AI</strong> · <strong>UX-strategie</strong> ·
-            <strong>Power Platform</strong>. Ik werk graag op het snijvlak van technologie,
-            psychologie en strategie.
-          </p>
-          <p class="availability"><span class="dot" aria-hidden="true"></span> Op zoek naar een stage of startersfunctie in IT</p>
+        <div>
+          <p class="eyebrow" data-field="location"></p>
+          <h1 data-field="name"></h1>
+          <p class="hero-title" data-field="title"></p>
+          <p class="status" data-field="availability"></p>
           <div class="hero-actions">
-            <a href="#contact" class="btn">Plan een afspraak</a>
-            <a href="#projecten" class="btn btn-ghost">Bekijk mijn projecten</a>
+            <a href="#contact" class="btn">Neem contact op</a>
+            <a href="#projecten" class="btn btn-ghost">Bekijk projecten</a>
           </div>
-          <ul class="hero-meta">
-            <li>📍 Amsterdam</li>
-            <li>🎓 Hogeschool Inholland</li>
-            <li>🌍 Arabisch · Engels · Turks · Nederlands</li>
-          </ul>
+          <ul class="hero-meta" id="hero-meta"></ul>
         </div>
-        <div class="hero-card">
-          <img class="avatar" src="assets/omar.jpg" alt="Portretfoto van Omar Hassan" width="160" height="160">
-          <div class="hero-card-body">
-            <div class="stat"><span class="stat-label">Opleiding</span><span class="stat-num">2e jaar hbo</span></div>
-            <div class="stat"><span class="stat-label">Projecten in 2026</span><span class="stat-num">3</span></div>
-            <div class="stat"><span class="stat-label">Talen</span><span class="stat-num">4</span></div>
-          </div>
-        </div>
+        <div class="photo-wrap" id="photo"></div>
       </div>
     </section>
 
-    <!-- OVER MIJ -->
-    <section id="over" class="section">
+    <!-- ============ 2. OVER MIJ ============ -->
+    <section class="block" id="over">
       <div class="container two-col">
         <div>
-          <p class="eyebrow">01 · Over mij</p>
-          <h2>Eerst denken, dan doen</h2>
+          <p class="eyebrow">Over mij</p>
+          <h2>Techniek die mensen echt helpt</h2>
         </div>
-        <div class="prose">
-          <p>
-            Ik ben tweedejaars student <strong>Business IT Management</strong> aan Hogeschool Inholland,
-            met een passie voor <strong>digitale innovatie en AI</strong>. Ik werk graag op het snijvlak van
-            technologie, psychologie en strategie: analytisch, kalm en ‘eerst denken, dan doen’.
-          </p>
-          <p>
-            In projecten heb ik gewerkt aan UX-strategie voor een internationale app, een BI-proof of concept
-            met Power BI en Python, en de organisatie van een cultuurfestival. Naast mijn studie werk ik als
-            assistent-manager in de horeca, waar ik leer een team aan te sturen en overzicht te houden.
-          </p>
-          <p>
-            Buiten werk en studie houd ik van <strong>voetbal</strong> en <strong>bodyweight-training</strong>,
-            en zet ik me graag in voor <strong>duurzaamheid</strong> en <strong>mensenrechten</strong>.
-          </p>
+        <div class="about">
+          <div id="about-text"></div>
+          <ul class="interests" id="interests"></ul>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTEN -->
-    <section id="projecten" class="section section-alt">
+    <!-- ============ 3. WERKERVARING ============ -->
+    <section class="block alt" id="ervaring">
       <div class="container">
-        <p class="eyebrow">02 · Projecten</p>
-        <h2>Waar ik aan heb gewerkt</h2>
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-top">
-              <span class="badge">UX-strategie</span>
-              <span class="project-date">feb – apr 2026</span>
-            </div>
-            <h3>UX-strategieproject</h3>
-            <p class="company">PicApp Sweden AB · Brugge</p>
-            <p>Erasmus+ stage in Brugge: met een internationaal team de onboarding en
-              gebruikersactivatie verbeterd van een Zweedse ride-sharing-app.</p>
-            <ul class="tags"><li>UX-strategie</li><li>Onboarding</li><li>Internationaal team</li></ul>
-          </article>
-          <article class="project-card">
-            <div class="project-top">
-              <span class="badge">Business Intelligence</span>
-              <span class="project-date">feb – jun 2026</span>
-            </div>
-            <h3>BI proof of concept</h3>
-            <p class="company">Inholland Bibliotheek</p>
-            <p>In teamverband een proof of concept ontwikkeld met Microsoft Power BI en Python.</p>
-            <ul class="tags"><li>Power BI</li><li>Python</li><li>Datamodellering</li></ul>
-          </article>
-          <article class="project-card">
-            <div class="project-top">
-              <span class="badge">Projectmanagement</span>
-              <span class="project-date">mei – jun 2026</span>
-            </div>
-            <h3>Embrace Cultuurfestival</h3>
-            <p class="company">Amsterdam</p>
-            <p>Met ons team een gratis cultuurfestival georganiseerd, gehouden op 20 juni 2026.</p>
-            <ul class="tags"><li>Organisatie</li><li>Samenwerking</li><li>Planning</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ERVARING -->
-    <section id="ervaring" class="section">
-      <div class="container">
-        <p class="eyebrow">03 · Werkervaring</p>
+        <p class="eyebrow">Werkervaring</p>
         <h2>Ervaring in de praktijk</h2>
-        <ol class="timeline">
-          <li class="timeline-item">
-            <div class="timeline-date">aug 2026 — heden</div>
-            <div class="timeline-card">
-              <h3>Assistent-manager</h3>
-              <p class="company">Bar Baggerbeest · parttime</p>
-              <p>Ik ondersteun de leiding bij teamaansturing, verkoop en de dagelijkse operatie.
-                In dienst sinds februari 2025, begonnen als bartender.</p>
-              <ul class="tags"><li>Teamaansturing</li><li>Verkoop</li><li>Operatie</li></ul>
-            </div>
-          </li>
-          <li class="timeline-item">
-            <div class="timeline-date">mrt 2022 — jan 2026</div>
-            <div class="timeline-card">
-              <h3>Receptionist</h3>
-              <p class="company">Parkview Hotel · parttime</p>
-              <p>Aan de front desk verantwoordelijk voor reserveringen, gastontvangst en betalingen.
-                Sprong bij waar nodig, zoals bij e-mail en fietsverhuur.</p>
-              <ul class="tags"><li>Gastvrijheid</li><li>Reserveringen</li><li>Flexibiliteit</li></ul>
-            </div>
-          </li>
-          <li class="timeline-item">
-            <div class="timeline-date">eerder</div>
-            <div class="timeline-card">
-              <h3>Chauffeur</h3>
-              <p class="company">PostNL</p>
-              <ul class="tags"><li>Zelfstandigheid</li><li>Tijdsbeheer</li></ul>
-            </div>
-          </li>
-        </ol>
+        <ol class="timeline" id="experience"></ol>
       </div>
     </section>
 
-    <!-- OPLEIDING -->
-    <section id="opleiding" class="section section-alt">
+    <!-- ============ 4. OPLEIDING ============ -->
+    <section class="block" id="opleiding">
       <div class="container">
-        <p class="eyebrow">04 · Opleiding &amp; certificaten</p>
-        <h2>Leren en groeien</h2>
-        <div class="edu-grid">
-          <article class="edu-card">
-            <div class="project-top"><span class="badge">Bachelor (hbo)</span><span class="project-date">feb 2025 – heden</span></div>
-            <h3>Business IT Management</h3>
-            <p class="company">Hogeschool Inholland</p>
-            <p>Tweede jaar; verwachte afronding in 2029.</p>
-          </article>
-          <article class="edu-card">
-            <div class="project-top"><span class="badge">Taal</span><span class="project-date">mei 2023 – feb 2024</span></div>
-            <h3>Nederlandse taal B2</h3>
-            <p class="company">Hogeschool van Amsterdam</p>
-          </article>
-          <article class="edu-card">
-            <div class="project-top"><span class="badge">Universiteit</span><span class="project-date">sep 2019 – okt 2021</span></div>
-            <h3>Civiele techniek</h3>
-            <p class="company">RTE Universiteit, Turkije</p>
-          </article>
-        </div>
-
-        <h3 class="subhead">Certificaten</h3>
-        <div class="edu-grid">
-          <article class="edu-card">
-            <div class="project-top"><span class="badge badge-green">Certificaat</span><span class="project-date">jan 2026</span></div>
-            <h3>BIP Sustainable Technology</h3>
-            <p class="company">VIVES Hogeschool</p>
-          </article>
-          <article class="edu-card">
-            <div class="project-top"><span class="badge badge-green">Certificaat</span><span class="project-date">sep 2025</span></div>
-            <h3>Communicatie-innovatie: AI Buddy</h3>
-            <p class="company">Calidus</p>
-          </article>
-        </div>
+        <p class="eyebrow">Opleiding</p>
+        <h2>Opleiding &amp; certificaten</h2>
+        <div class="grid" id="education"></div>
+        <h3 class="subhead">Certificaten &amp; vrijwilligerswerk</h3>
+        <div class="grid" id="certificates"></div>
       </div>
     </section>
 
-    <!-- VAARDIGHEDEN -->
-    <section id="vaardigheden" class="section">
+    <!-- ============ 5. PROJECTEN ============ -->
+    <section class="block alt" id="projecten">
       <div class="container">
-        <p class="eyebrow">05 · Vaardigheden &amp; talen</p>
+        <p class="eyebrow">Projecten</p>
+        <h2>Waar ik aan heb gewerkt</h2>
+        <div class="grid" id="projects"></div>
+      </div>
+    </section>
+
+    <!-- ============ 6. VAARDIGHEDEN & TALEN ============ -->
+    <section class="block" id="vaardigheden">
+      <div class="container">
+        <p class="eyebrow">Vaardigheden &amp; talen</p>
         <h2>Wat ik meebreng</h2>
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">📊</div>
-            <h3>Data &amp; BI</h3>
-            <ul class="tags"><li>Microsoft Power BI</li><li>Python</li><li>Datamodellering</li></ul>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">⚙️</div>
-            <h3>Processen &amp; Platform</h3>
-            <ul class="tags"><li>Microsoft Power Apps</li><li>Procesmodellering</li><li>Informatiemanagement</li></ul>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">🧭</div>
-            <h3>Strategie &amp; Business</h3>
-            <ul class="tags"><li>Bedrijfsanalyse</li><li>UX-strategie</li><li>Projectmanagement</li></ul>
-          </article>
-        </div>
-
-        <div class="languages">
-          <h3>Talen</h3>
-          <ul class="lang-list">
-            <li><span>Arabisch</span><small>moedertaal</small></li>
-            <li><span>Engels</span><small>C1</small></li>
-            <li><span>Turks</span><small>C1</small></li>
-            <li><span>Nederlands</span><small>B2</small></li>
-          </ul>
-        </div>
+        <div class="grid" id="skills"></div>
       </div>
     </section>
 
-    <!-- CONTACT / AFSPRAAK -->
-    <section id="contact" class="section section-alt">
-      <div class="container two-col">
-        <div>
-          <p class="eyebrow">06 · Contact</p>
-          <h2>Afspraak maken</h2>
-          <p class="muted">
-            Wil je kennismaken, een stage of vacature bespreken of samenwerken? Vul het formulier in —
-            je e-mailprogramma opent met een ingevuld bericht. Ik reageer zo snel mogelijk.
-          </p>
-          <ul class="contact-list">
-            <li><span aria-hidden="true">✉️</span> <a href="mailto:omaralain2020@gmail.com">omaralain2020@gmail.com</a></li>
-            <li><span aria-hidden="true">💼</span> <a href="https://www.linkedin.com/in/omar-hassan-849558201" target="_blank" rel="noopener">linkedin.com/in/omar-hassan-849558201</a></li>
-            <li><span aria-hidden="true">💻</span> <a href="https://github.com/alain202020" target="_blank" rel="noopener">github.com/alain202020</a></li>
-          </ul>
+    <!-- ============ 7. CONTACT ============ -->
+    <section class="block alt" id="contact">
+      <div class="container contact-box">
+        <p class="eyebrow">Contact</p>
+        <h2>Laten we kennismaken</h2>
+        <p class="muted" data-field="contactText"></p>
+        <div class="contact-links">
+          <a class="btn" id="email-link">✉️ <span data-field="email"></span></a>
+          <a class="btn btn-ghost" id="linkedin-link" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="btn btn-ghost" id="copy-email" type="button">E-mail kopiëren</button>
         </div>
-        <form class="form" id="appointment-form" novalidate>
-          <div class="field">
-            <label for="name">Naam</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="email">E-mailadres</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="date">Voorkeursdatum</label>
-              <input id="date" name="date" type="date">
-            </div>
-            <div class="field">
-              <label for="topic">Onderwerp</label>
-              <select id="topic" name="topic">
-                <option>Kennismaking</option>
-                <option>Stage</option>
-                <option>Vacature / startersfunctie</option>
-                <option>Samenwerking of project</option>
-                <option>Overig</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label for="message">Bericht</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-block">Verstuur aanvraag</button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </form>
+        <p class="copy-msg" id="copy-msg" role="status" aria-live="polite"></p>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <!-- ============ 8. FOOTER ============ -->
+  <footer>
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Omar Hassan</p>
+      <span>© <span id="year"></span> <span data-field="name"></span> · <span data-field="location"></span></span>
       <a href="#top">Terug naar boven ↑</a>
     </div>
   </footer>
 
-  <script src="assets/script.js"></script>
+  <script>
+    /* ===================================================================
+       JOUW GEGEVENS — pas hier alle teksten aan.
+       Je hoeft de HTML hierboven niet te veranderen: alles wordt
+       automatisch vanuit dit object op de pagina gezet.
+       =================================================================== */
+    const PROFILE = {
+      name: "Omar Hassan",
+      nickname: "OM",
+      location: "Amsterdam",
+      title: "Business IT Management student | Power BI & digitale transformatie",
+      availability: "Op zoek naar een stage in Amsterdam (februari – juni)",
+      email: "omaralain2020@gmail.com",
+      linkedin: "https://www.linkedin.com/in/omar-hassan-849558201",
+      // Zet hier de bestandsnaam van je foto (in dezelfde map als index.html).
+      // Laat leeg ("") om je initialen te tonen.
+      photo: "assets/omar.jpg",
+
+      heroMeta: ["📍 Amsterdam", "🎓 Hogeschool Inholland", "🚗 Rijbewijs B"],
+
+      about: [
+        "Ik ben Omar, tweedejaars student <strong>Business IT Management</strong> aan Hogeschool Inholland Amsterdam. In mijn studie richt ik me op <strong>Power BI</strong>, <strong>Power Apps</strong> en <strong>digitale transformatie</strong>: hoe je met data en slimme tools processen eenvoudiger en beter maakt.",
+        "Naast mijn studie werk ik als Assistant Manager in de horeca. Daar zie ik elke dag dat technologie pas waarde heeft als mensen er echt mee werken. Dat is ook mijn aanpak: eerst goed begrijpen wat de gebruiker nodig heeft, daarna pas bouwen.",
+        "Ik ben op zoek naar een <strong>stage in Amsterdam van februari tot en met juni</strong>, bij een organisatie die werkt aan digitale innovatie, data of het Power Platform."
+      ],
+
+      interests: ["UX-strategie", "Productinnovatie", "Power Platform", "Digitale innovatie", "AI & agentic AI", "Internationale projecten"],
+
+      experience: [
+        {
+          role: "Assistant Manager",
+          org: "Bar Baggerbeest, Amsterdam",
+          period: "feb 2024 – heden",
+          text: "Bijbaan naast mijn studie. Ik ondersteun de leiding bij de dagelijkse operatie, het team en de servicekwaliteit, en ontwikkelde een praktisch voorraadbeheersysteem."
+        },
+        {
+          role: "Receptionist",
+          org: "Cityview Hotel / Hotel Parkview, Amsterdam",
+          period: "jan 2023 – jan 2026",
+          text: "Eerst fulltime, daarna parttime aan de front desk: gasten ontvangen, reserveringen en betalingen verwerken en meedenken waar dat nodig was."
+        },
+        {
+          role: "Pakketbezorger",
+          org: "PostNL, Amsterdam",
+          period: "mei 2024 – dec 2024",
+          text: "Zelfstandig en op tijd pakketten bezorgen volgens een vaste route en planning."
+        }
+      ],
+
+      education: [
+        {
+          title: "Business IT Management (hbo)",
+          org: "Hogeschool Inholland Amsterdam",
+          period: "jan 2025 – heden",
+          text: "Tweedejaars. Focus op Power BI, Power Apps en digitale transformatie. Verwachte afronding: 2028."
+        },
+        {
+          title: "Civil Engineering (hbo)",
+          org: "RTE, Rize (Turkije)",
+          period: "sep 2020 – mei 2021",
+          text: "Technische basis in civiele techniek."
+        }
+      ],
+
+      certificates: [
+        { title: "BIP Sustainable Technology", org: "Certificaat", text: "Certificaat van een internationaal Blended Intensive Programme (BIP) over duurzame technologie." },
+        { title: "Vrijwilliger bij Kletsmaatjes", org: "Vrijwilligerswerk", text: "Als vrijwilliger in gesprek gaan met mensen en tijd maken voor een goed gesprek." }
+      ],
+
+      projects: [
+        {
+          title: "Voorraadbeheersysteem in Excel",
+          context: "Bar Baggerbeest",
+          text: "Van een complex ontwerp met veel tabbladen naar een eenvoudig en praktisch systeem dat het personeel echt gebruikt.",
+          tags: ["Excel", "Procesverbetering", "Gebruiksgemak"]
+        },
+        {
+          title: "AI-agent voor de Assistant Manager",
+          context: "Eigen project",
+          text: "Een AI-agent die de rol van Assistant Manager ondersteunt op het gebied van servicekwaliteit, teamwork en organisatie.",
+          tags: ["Agentic AI", "Generative AI", "Horeca"]
+        },
+        {
+          title: "BIP “Fabricated 2.0”",
+          context: "Internationaal project · België",
+          text: "Samen met een internationaal team gewerkt aan duurzame technologie, AI, misinformatie en contentmoderatie.",
+          tags: ["AI", "Duurzaamheid", "Internationaal"]
+        },
+        {
+          title: "KPI-dashboard voor een bibliotheek",
+          context: "Studieproject",
+          text: "Een KPI-dashboard ontwikkeld op basis van Business Intelligence en Data Warehousing.",
+          tags: ["Power BI", "BI", "Data Warehousing"]
+        },
+        {
+          title: "Interactief periodiek systeem",
+          context: "React-component",
+          text: "Een Nederlandstalig periodiek systeem als React-component, met zoeken, filteren en detailpanelen per element.",
+          tags: ["React", "JavaScript", "UX"]
+        }
+      ],
+
+      skills: [
+        { group: "Data & BI", items: ["Power BI", "KPI-dashboards", "Data Warehousing", "Excel"] },
+        { group: "Power Platform & AI", items: ["Power Apps", "Digitale transformatie", "AI-agents", "React"] },
+        { group: "Werkwijze", items: ["UX-strategie", "Productinnovatie", "Teamwork", "Organisatie"] }
+      ],
+
+      // level: 1 t/m 5 (aantal gevulde balkjes)
+      languages: [
+        { name: "Arabisch", label: "Moedertaal", level: 5 },
+        { name: "Engels", label: "Vloeiend", level: 5 },
+        { name: "Nederlands", label: "B2", level: 4 },
+        { name: "Turks", label: "B1", level: 3 }
+      ],
+
+      contactText: "Heb je een stageplek, een interessant project of wil je gewoon kennismaken? Stuur me een e-mail of een bericht via LinkedIn. Ik reageer zo snel mogelijk."
+    };
+
+    /* ===================================================================
+       Hieronder hoef je normaal niets aan te passen.
+       =================================================================== */
+    const $ = (sel) => document.querySelector(sel);
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    // Losse tekstvelden
+    document.querySelectorAll("[data-field]").forEach((el) => {
+      el.textContent = PROFILE[el.dataset.field] ?? "";
+    });
+    $("#year").textContent = new Date().getFullYear();
+
+    // Foto of initialen
+    const photo = $("#photo");
+    const showInitials = () => { photo.innerHTML = `<div class="initials" aria-hidden="true">${esc(PROFILE.nickname)}</div>`; };
+    if (PROFILE.photo) {
+      const img = new Image();
+      img.className = "photo";
+      img.alt = `Portretfoto van ${PROFILE.name}`;
+      img.onerror = showInitials;
+      img.src = PROFILE.photo;
+      photo.appendChild(img);
+    } else {
+      showInitials();
+    }
+
+    $("#hero-meta").innerHTML = PROFILE.heroMeta.map((m) => `<li>${esc(m)}</li>`).join("");
+    $("#about-text").innerHTML = PROFILE.about.map((p) => `<p>${p}</p>`).join("");
+    $("#interests").innerHTML = PROFILE.interests.map((i) => `<li class="tag">${esc(i)}</li>`).join("");
+
+    $("#experience").innerHTML = PROFILE.experience.map((e) => `
+      <li>
+        <div class="card">
+          <div class="card-head"><h3>${esc(e.role)}</h3><span class="date">${esc(e.period)}</span></div>
+          <p class="sub">${esc(e.org)}</p>
+          <p>${esc(e.text)}</p>
+        </div>
+      </li>`).join("");
+
+    $("#education").innerHTML = PROFILE.education.map((e) => `
+      <article class="card">
+        <span class="date">${esc(e.period)}</span>
+        <h3 style="margin-top:.4rem">${esc(e.title)}</h3>
+        <p class="sub">${esc(e.org)}</p>
+        <p>${esc(e.text)}</p>
+      </article>`).join("");
+
+    $("#certificates").innerHTML = PROFILE.certificates.map((c) => `
+      <article class="card">
+        <span class="tag">${esc(c.org)}</span>
+        <h3 style="margin-top:.8rem">${esc(c.title)}</h3>
+        <p>${esc(c.text)}</p>
+      </article>`).join("");
+
+    $("#projects").innerHTML = PROFILE.projects.map((p, i) => `
+      <article class="card project">
+        <div class="num">${String(i + 1).padStart(2, "0")}</div>
+        <h3>${esc(p.title)}</h3>
+        <p class="sub">${esc(p.context)}</p>
+        <p>${esc(p.text)}</p>
+        <div class="tags">${p.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+      </article>`).join("");
+
+    $("#skills").innerHTML = PROFILE.skills.map((s) => `
+      <article class="card">
+        <h3>${esc(s.group)}</h3>
+        <ul class="skill-list">${s.items.map((i) => `<li class="tag">${esc(i)}</li>`).join("")}</ul>
+      </article>`).join("") + `
+      <article class="card langs">
+        <h3>Talen</h3>
+        <div class="lang-grid">
+        ${PROFILE.languages.map((l) => `
+          <div class="lang">
+            <strong>${esc(l.name)}</strong>
+            <span style="display:flex;align-items:center">
+              <span class="lang-label">${esc(l.label)}</span>
+              <span class="level" aria-label="Niveau ${l.level} van 5">${[1, 2, 3, 4, 5].map((n) => `<i class="${n <= l.level ? "on" : ""}"></i>`).join("")}</span>
+            </span>
+          </div>`).join("")}
+        </div>
+      </article>`;
+
+    // Contact
+    $("#email-link").href = `mailto:${PROFILE.email}`;
+    $("#linkedin-link").href = PROFILE.linkedin;
+    $("#copy-email").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(PROFILE.email);
+        $("#copy-msg").textContent = "E-mailadres gekopieerd!";
+      } catch {
+        $("#copy-msg").textContent = PROFILE.email;
+      }
+    });
+
+    // Mobiel menu
+    const toggle = $(".nav-toggle");
+    const links = $("#nav-links");
+    toggle.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", links.classList.toggle("open"));
+    });
+    links.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }));
+
+    // Rustige animatie bij scrollen
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
+      }), { threshold: 0.1 });
+      document.querySelectorAll(".card, .two-col > *").forEach((el) => { el.classList.add("reveal"); io.observe(el); });
+    }
+  </script>
 </body>
 </html>
