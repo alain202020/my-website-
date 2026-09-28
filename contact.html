@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script>/* taal + leesrichting vóór het tekenen zetten (geen verspringing) */try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(l==="ar"||l==="en"){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 </head>
 <body data-page="contact">
   <main>
@@ -18,12 +19,12 @@
       <canvas id="scene" data-variant="contact" aria-hidden="true"></canvas>
       <div class="container">
         <span class="kicker fade-in" style="animation-delay:.3s"><span class="pulse"></span><span data-field="availability"></span></span>
-        <h1><span class="split"><span>Laten we</span></span><span class="split"><span><em>praten</em>.</span></span></h1>
+        <h1><span class="split"><span data-i18n-html="contact.h1a"></span></span><span class="split"><span data-i18n-html="contact.h1b"></span></span></h1>
         <p class="fade-in" style="animation-delay:.8s" data-field="contactText"></p>
         <div class="contact-actions fade-in" style="animation-delay:1s">
           <a class="btn btn-primary" id="email-link" data-magnetic>✉ <span data-field="email"></span></a>
           <a class="btn btn-outline" id="linkedin-link" target="_blank" rel="noopener" data-magnetic>LinkedIn <span class="arrow">↗</span></a>
-          <button class="btn btn-outline" id="copy-email" type="button" data-magnetic>E-mail kopiëren</button>
+          <button class="btn btn-outline" id="copy-email" type="button" data-magnetic data-i18n="contact.copy"></button>
         </div>
         <p class="copied" id="copied" role="status" aria-live="polite"></p>
       </div>
@@ -32,7 +33,9 @@
     <div id="next-page"></div>
   </main>
 
-  <script src="assets/data.js"></script>
+  <script src="assets/i18n/nl.js"></script>
+  <script src="assets/i18n/en.js"></script>
+  <script src="assets/i18n/ar.js"></script>
   <script src="assets/main.js"></script>
   <script type="module" src="assets/scene.js"></script>
 </body>

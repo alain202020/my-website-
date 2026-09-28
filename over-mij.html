@@ -11,15 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script>/* taal + leesrichting vóór het tekenen zetten (geen verspringing) */try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(l==="ar"||l==="en"){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 </head>
 <body data-page="over">
   <main>
     <section class="page-hero">
       <canvas id="scene" data-variant="over" aria-hidden="true"></canvas>
       <div class="container">
-        <span class="crumb fade-in" style="animation-delay:.3s"><b>01</b> / Over mij</span>
-        <h1><span class="split"><span>Techniek die</span></span><span class="split"><span><em>mensen</em> helpt.</span></span></h1>
-        <p class="fade-in" style="animation-delay:.8s">Analytisch, kalm en ‘eerst denken, dan doen’: op het snijvlak van technologie, psychologie en strategie.</p>
+        <span class="crumb fade-in" style="animation-delay:.3s"><b>01</b> / <span data-i18n="nav.over"></span></span>
+        <h1><span class="split"><span data-i18n-html="over.h1a"></span></span><span class="split"><span data-i18n-html="over.h1b"></span></span></h1>
+        <p class="fade-in" style="animation-delay:.8s" data-i18n="over.intro"></p>
       </div>
     </section>
 
@@ -29,12 +30,12 @@
         <div class="portrait reveal">
           <div class="portrait-inner" id="portrait">
             <div id="photo"></div>
-            <div class="float-chip chip-1"><small>STUDIE</small><b>Business IT</b> Management</div>
-            <div class="float-chip chip-2"><small>BASIS</small><b>Amsterdam</b> · NL</div>
+            <div class="float-chip chip-1"><small data-i18n="over.chipStudy"></small><span data-i18n-html="over.chipStudyText"></span></div>
+            <div class="float-chip chip-2"><small data-i18n="over.chipBase"></small><span data-i18n-html="over.chipBaseText"></span></div>
           </div>
         </div>
         <div class="about-text">
-          <span class="label reveal"><b>01</b>Profiel</span>
+          <span class="label reveal"><b>01</b><span data-i18n="over.profileLabel"></span></span>
           <div class="reveal" id="about-text"></div>
           <div class="stats reveal" id="stats"></div>
           <ul class="chips reveal" id="interests"></ul>
@@ -46,8 +47,8 @@
     <section class="block alt" id="ervaring">
       <div class="container">
         <div class="sec-head">
-          <div><span class="label reveal"><b>02</b>Werkervaring</span><h2 class="reveal">Ervaring in de <em>praktijk</em></h2></div>
-          <p class="sec-note reveal">Naast mijn studie leer ik in de horeca en de hotellerie hoe je teams, gasten en processen soepel laat lopen.</p>
+          <div><span class="label reveal"><b>02</b><span data-i18n="over.expLabel"></span></span><h2 class="reveal" data-i18n-html="over.expTitle"></h2></div>
+          <p class="sec-note reveal" data-i18n="over.expNote"></p>
         </div>
         <ol class="timeline" id="timeline">
           <div class="timeline-rail"><div class="timeline-fill" id="timeline-fill"></div></div>
@@ -59,10 +60,10 @@
     <section class="block" id="opleiding">
       <div class="container">
         <div class="sec-head">
-          <div><span class="label reveal"><b>03</b>Opleiding</span><h2 class="reveal">Leren &amp; <em>groeien</em></h2></div>
+          <div><span class="label reveal"><b>03</b><span data-i18n="over.eduLabel"></span></span><h2 class="reveal" data-i18n-html="over.eduTitle"></h2></div>
         </div>
         <div class="edu-list" id="education"></div>
-        <p class="subhead reveal">Certificaten &amp; vrijwilligerswerk</p>
+        <p class="subhead reveal" data-i18n-html="over.certs"></p>
         <div class="edu-list" id="certificates"></div>
       </div>
     </section>
@@ -70,7 +71,9 @@
     <div id="next-page"></div>
   </main>
 
-  <script src="assets/data.js"></script>
+  <script src="assets/i18n/nl.js"></script>
+  <script src="assets/i18n/en.js"></script>
+  <script src="assets/i18n/ar.js"></script>
   <script src="assets/main.js"></script>
   <script type="module" src="assets/scene.js"></script>
 </body>

@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script>/* taal + leesrichting vóór het tekenen zetten (geen verspringing) */try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(l==="ar"||l==="en"){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 </head>
 <body data-page="home">
   <main>
@@ -30,12 +31,12 @@
           <span data-field="titleStart"></span> <span class="typed" id="typed"></span><span class="caret"></span>
         </p>
         <div class="hero-actions fade-in" style="animation-delay:.9s">
-          <a href="contact.html" class="btn btn-primary" data-magnetic>Neem contact op <span class="arrow">→</span></a>
-          <a href="projecten.html" class="btn btn-outline" data-magnetic>Bekijk projecten</a>
+          <a href="contact.html" class="btn btn-primary" data-magnetic><span data-i18n="home.ctaContact"></span> <span class="arrow">→</span></a>
+          <a href="projecten.html" class="btn btn-outline" data-magnetic data-i18n="home.ctaProjects"></a>
         </div>
       </div>
-      <div class="scroll-hint">SCROLL<i></i></div>
-      <div class="drag-hint">↻ SLEEP OM TE DRAAIEN</div>
+      <div class="scroll-hint"><span data-i18n="home.scroll"></span><i></i></div>
+      <div class="drag-hint" data-i18n="home.drag"></div>
     </section>
 
     <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
@@ -43,12 +44,12 @@
     <!-- KORTE INTRO -->
     <section class="block">
       <div class="container">
-        <span class="label reveal"><b>01</b>Wie ik ben</span>
+        <span class="label reveal"><b>01</b><span data-i18n="home.whoLabel"></span></span>
         <div class="intro-grid">
           <p class="big reveal" data-field="intro"></p>
           <div class="reveal">
             <div class="stats" id="stats" style="margin-top:0"></div>
-            <p style="margin-top:24px"><a class="link-arrow" href="over-mij.html">Meer over mij <span class="arrow">→</span></a></p>
+            <p style="margin-top:24px"><a class="link-arrow" href="over-mij.html"><span data-i18n="home.moreAbout"></span> <span class="arrow">→</span></a></p>
           </div>
         </div>
       </div>
@@ -58,8 +59,8 @@
     <section class="block alt">
       <div class="container">
         <div class="sec-head">
-          <div><span class="label reveal"><b>02</b>Uitgelicht</span><h2 class="reveal">Geselecteerd <em>werk</em></h2></div>
-          <a class="link-arrow reveal" href="projecten.html">Alle projecten <span class="arrow">→</span></a>
+          <div><span class="label reveal"><b>02</b><span data-i18n="home.featuredLabel"></span></span><h2 class="reveal" data-i18n-html="home.featuredTitle"></h2></div>
+          <a class="link-arrow reveal" href="projecten.html"><span data-i18n="home.allProjects"></span> <span class="arrow">→</span></a>
         </div>
         <div class="projects" id="projects" data-featured></div>
       </div>
@@ -69,13 +70,13 @@
     <section class="block">
       <div class="container">
         <div class="sec-head">
-          <div><span class="label reveal"><b>03</b>Ontdek</span><h2 class="reveal">Verken de <em>site</em></h2></div>
+          <div><span class="label reveal"><b>03</b><span data-i18n="home.exploreLabel"></span></span><h2 class="reveal" data-i18n-html="home.exploreTitle"></h2></div>
         </div>
         <div class="tiles">
-          <a class="tile reveal" href="over-mij.html"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">01</span><span class="go">→</span><div><h3>Over mij</h3><p>Profiel, werkervaring en opleiding</p></div></div></a>
-          <a class="tile reveal" href="projecten.html" style="transition-delay:.08s"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">02</span><span class="go">→</span><div><h3>Projecten</h3><p>BI, AI, UX en organisatie</p></div></div></a>
-          <a class="tile reveal" href="vaardigheden.html" style="transition-delay:.16s"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">03</span><span class="go">→</span><div><h3>Skills</h3><p>Vaardigheden en talen in 3D</p></div></div></a>
-          <a class="tile reveal" href="contact.html" style="transition-delay:.24s"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">04</span><span class="go">→</span><div><h3>Contact</h3><p>Laten we kennismaken</p></div></div></a>
+          <a class="tile reveal" href="over-mij.html"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">01</span><span class="go">→</span><div><h3 data-i18n="nav.over"></h3><p data-i18n="home.tileOver"></p></div></div></a>
+          <a class="tile reveal" href="projecten.html" style="transition-delay:.08s"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">02</span><span class="go">→</span><div><h3 data-i18n="nav.projecten"></h3><p data-i18n="home.tileProjecten"></p></div></div></a>
+          <a class="tile reveal" href="vaardigheden.html" style="transition-delay:.16s"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">03</span><span class="go">→</span><div><h3 data-i18n="nav.vaardigheden"></h3><p data-i18n="home.tileSkills"></p></div></div></a>
+          <a class="tile reveal" href="contact.html" style="transition-delay:.24s"><div class="tile-inner tiltable"><div class="glare"></div><span class="num">04</span><span class="go">→</span><div><h3 data-i18n="nav.contact"></h3><p data-i18n="home.tileContact"></p></div></div></a>
         </div>
       </div>
     </section>
@@ -90,7 +91,9 @@
     </div>
   </div>
 
-  <script src="assets/data.js"></script>
+  <script src="assets/i18n/nl.js"></script>
+  <script src="assets/i18n/en.js"></script>
+  <script src="assets/i18n/ar.js"></script>
   <script src="assets/main.js"></script>
   <script type="module" src="assets/scene.js"></script>
 </body>

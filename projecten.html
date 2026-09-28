@@ -11,21 +11,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script>/* taal + leesrichting vóór het tekenen zetten (geen verspringing) */try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(l==="ar"||l==="en"){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 </head>
 <body data-page="projecten">
   <main>
     <section class="page-hero">
       <canvas id="scene" data-variant="projecten" aria-hidden="true"></canvas>
       <div class="container">
-        <span class="crumb fade-in" style="animation-delay:.3s"><b>02</b> / Projecten</span>
-        <h1><span class="split"><span>Geselecteerd</span></span><span class="split outline"><span>werk</span></span></h1>
-        <p class="fade-in" style="animation-delay:.8s">Van KPI-dashboards en AI-agents tot UX-strategie en een cultuurfestival. Beweeg over een kaart om hem in 3D te kantelen; klik voor details.</p>
+        <span class="crumb fade-in" style="animation-delay:.3s"><b>02</b> / <span data-i18n="nav.projecten"></span></span>
+        <h1><span class="split"><span data-i18n="projecten.h1a"></span></span><span class="split outline"><span data-i18n="projecten.h1b"></span></span></h1>
+        <p class="fade-in" style="animation-delay:.8s" data-i18n="projecten.intro"></p>
       </div>
     </section>
 
     <section class="block">
       <div class="container">
-        <div class="filters reveal" id="filters" role="toolbar" aria-label="Filter projecten"></div>
+        <div class="filters reveal" id="filters" role="toolbar" aria-label="Filter"></div>
         <div class="projects" id="projects"></div>
       </div>
     </section>
@@ -41,7 +42,9 @@
     </div>
   </div>
 
-  <script src="assets/data.js"></script>
+  <script src="assets/i18n/nl.js"></script>
+  <script src="assets/i18n/en.js"></script>
+  <script src="assets/i18n/ar.js"></script>
   <script src="assets/main.js"></script>
   <script type="module" src="assets/scene.js"></script>
 </body>

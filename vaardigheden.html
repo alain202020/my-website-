@@ -11,15 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script>/* taal + leesrichting vóór het tekenen zetten (geen verspringing) */try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(l==="ar"||l==="en"){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 </head>
 <body data-page="vaardigheden">
   <main>
     <section class="page-hero">
       <canvas id="scene" data-variant="vaardigheden" aria-hidden="true"></canvas>
       <div class="container">
-        <span class="crumb fade-in" style="animation-delay:.3s"><b>03</b> / Vaardigheden</span>
-        <h1><span class="split"><span>Wat ik</span></span><span class="split"><span><em>meebreng</em></span></span></h1>
-        <p class="fade-in" style="animation-delay:.8s">Data, het Power Platform en bedrijfsprocessen — plus vier talen.</p>
+        <span class="crumb fade-in" style="animation-delay:.3s"><b>03</b> / <span data-i18n="nav.vaardigheden"></span></span>
+        <h1><span class="split"><span data-i18n-html="vaardigheden.h1a"></span></span><span class="split"><span data-i18n-html="vaardigheden.h1b"></span></span></h1>
+        <p class="fade-in" style="animation-delay:.8s" data-i18n="vaardigheden.intro"></p>
       </div>
     </section>
 
@@ -27,12 +28,12 @@
       <div class="container">
         <div class="skills-grid">
           <div>
-            <span class="label reveal">Sleep de bol om te draaien</span>
+            <span class="label reveal" data-i18n="vaardigheden.drag"></span>
             <div class="sphere-wrap reveal" id="sphere" aria-label="3D-bol met vaardigheden"></div>
           </div>
           <div>
             <div class="skill-groups reveal" id="skill-groups"></div>
-            <div class="sg langs reveal"><h3>Talen</h3><div id="languages"></div></div>
+            <div class="sg langs reveal"><h3 data-i18n="vaardigheden.langs"></h3><div id="languages"></div></div>
           </div>
         </div>
       </div>
@@ -41,7 +42,9 @@
     <div id="next-page"></div>
   </main>
 
-  <script src="assets/data.js"></script>
+  <script src="assets/i18n/nl.js"></script>
+  <script src="assets/i18n/en.js"></script>
+  <script src="assets/i18n/ar.js"></script>
   <script src="assets/main.js"></script>
   <script type="module" src="assets/scene.js"></script>
 </body>

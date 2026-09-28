@@ -1,7 +1,6 @@
 /* Gedeeld script voor alle pagina's. Normaal hoef je hier niets aan te veranderen:
-   de teksten staan in assets/data.js. */
+   de teksten staan in assets/i18n/nl.js, en.js en ar.js. */
 (function () {
-  const P = window.PROFILE;
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => [...document.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -9,33 +8,62 @@
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const page = document.body.dataset.page;
 
+  // ---------- Taal kiezen: ?lang=… → opgeslagen keuze → Nederlands ----------
+  const LANGS = ["nl", "en", "ar"];
+  const LANG_SHORT = { nl: "NL", en: "EN", ar: "ع" };
+  const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
+                  set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
+  const fromUrl = new URLSearchParams(location.search).get("lang");
+  const lang = LANGS.includes(fromUrl) ? fromUrl : LANGS.includes(store.get("lang")) ? store.get("lang") : "nl";
+  store.set("lang", lang);
+  const P = window.PROFILES[lang];
+  const T = P.ui;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  if (lang === "ar" && !$("#font-ar")) {
+    document.head.insertAdjacentHTML("beforeend", '<link id="font-ar" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">');
+  }
+  const [title, desc] = T.meta[page] || T.meta.home;
+  document.title = title;
+  const md = $('meta[name="description"]'); if (md) md.content = desc;
+
+  // Interne links houden de gekozen taal vast (ook zonder opgeslagen voorkeur)
+  const langHref = (href) => { const [base, hash] = href.split("#"); return (lang === "nl" ? base : `${base}?lang=${lang}`) + (hash ? "#" + hash : ""); };
+
   const PAGES = [
-    { id: "home", href: "index.html", label: "Home" },
-    { id: "over", href: "over-mij.html", label: "Over mij" },
-    { id: "projecten", href: "projecten.html", label: "Projecten" },
-    { id: "vaardigheden", href: "vaardigheden.html", label: "Vaardigheden" },
-    { id: "contact", href: "contact.html", label: "Contact", cta: true }
+    { id: "home", href: "index.html" },
+    { id: "over", href: "over-mij.html" },
+    { id: "projecten", href: "projecten.html" },
+    { id: "vaardigheden", href: "vaardigheden.html" },
+    { id: "contact", href: "contact.html", cta: true }
   ];
 
-  // ---------- Vaste onderdelen: menu, cursor, voortgang, overgang, footer ----------
+  // ---------- Vaste onderdelen: menu, taalknop, cursor, voortgang, overgang, footer ----------
   document.body.insertAdjacentHTML("afterbegin", `
-    <div class="curtain" aria-hidden="true"><span>OM.</span></div>
+    <div class="curtain" aria-hidden="true"><span>${esc(P.initials)}.</span></div>
     <div class="progress" id="progress"></div>
     <div class="cursor" id="cursor"></div><div class="cursor-dot" id="cursor-dot"></div>
     <header class="nav">
-      <a href="index.html" class="logo" data-magnetic aria-label="Home">OM<span>.</span></a>
-      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+      <a href="index.html" class="logo" data-magnetic aria-label="${esc(T.nav.home)}">${esc(P.initials)}<span>.</span></a>
       <nav class="nav-links" id="nav-links">
         ${PAGES.filter((p) => p.id !== "home").map((p) =>
-          `<a href="${p.href}"${p.cta ? ' class="cta"' : ""}${p.id === page ? ' aria-current="page"' : ""}>${p.cta ? "Neem contact op" : p.label}</a>`).join("")}
+          `<a href="${p.href}"${p.cta ? ' class="cta"' : ""}${p.id === page ? ' aria-current="page"' : ""}>${esc(p.cta ? T.nav.cta : T.nav[p.id])}</a>`).join("")}
       </nav>
-    </header>`);
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="${esc(T.common.language)}">
+          <span class="lang-glider" aria-hidden="true"></span>
+          ${LANGS.map((l) => `<button type="button" data-lang="${l}" lang="${l}" title="${esc(window.PROFILES[l].langName)}"${l === lang ? ' aria-pressed="true"' : ' aria-pressed="false"'}>${LANG_SHORT[l]}</button>`).join("")}
+        </div>
+        <button class="nav-toggle" aria-label="${esc(T.common.menu)}" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+      </div>
+    </header>
+    <div class="lang-wipe" aria-hidden="true"><span></span></div>`);
 
   document.body.insertAdjacentHTML("beforeend", `
     <footer>
       <div class="container footer-inner">
         <span>© ${new Date().getFullYear()} ${esc(P.name)} — ${esc(P.location)}</span>
-        <span><a href="mailto:${esc(P.email)}">E-mail</a> · <a href="${esc(P.linkedin)}" target="_blank" rel="noopener">LinkedIn</a></span>
+        <span><a href="mailto:${esc(P.email)}">${esc(T.common.email)}</a> · <a href="${esc(P.linkedin)}" target="_blank" rel="noopener">LinkedIn</a></span>
       </div>
     </footer>`);
 
@@ -44,34 +72,72 @@
   if (next) {
     const i = PAGES.findIndex((p) => p.id === page);
     const n = PAGES[(i + 1) % PAGES.length];
-    next.innerHTML = `<a class="next-page container" href="${n.href}"><span><small>Volgende pagina</small><strong>${n.label}</strong></span><span class="arrow">→</span></a>`;
+    next.innerHTML = `<a class="next-page container" href="${n.href}"><span><small>${esc(T.common.nextPage)}</small><strong>${esc(T.nav[n.id])}</strong></span><span class="arrow">→</span></a>`;
   }
 
-  // Losse tekstvelden
+  // Teksten invullen: data-field (gegevens), data-i18n (vaste tekst), data-i18n-html (met opmaak)
+  const lookup = (path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), T);
   $$("[data-field]").forEach((el) => { el.textContent = P[el.dataset.field] ?? ""; });
+  $$("[data-i18n]").forEach((el) => { el.textContent = lookup(el.dataset.i18n) ?? ""; });
+  $$("[data-i18n-html]").forEach((el) => { el.innerHTML = lookup(el.dataset.i18nHtml) ?? ""; });
+
+  // Alle interne links krijgen de taal mee
+  $$('a[href$=".html"], a[href*=".html#"]').forEach((a) => { a.setAttribute("href", langHref(a.getAttribute("href"))); });
 
   // ---------- Menu (mobiel) ----------
   const toggle = $(".nav-toggle"), links = $("#nav-links");
   toggle.addEventListener("click", () => toggle.setAttribute("aria-expanded", links.classList.toggle("open")));
+
+  // ---------- Taalknop: glijdend blokje + overgang met de naam van de taal ----------
+  const sw = $(".lang-switch"), glider = $(".lang-glider");
+  const placeGlider = (btn, animate) => {
+    if (!animate) glider.style.transition = "none";
+    glider.style.width = btn.offsetWidth + "px";
+    glider.style.transform = `translateX(${btn.offsetLeft - 4}px)`;
+    if (!animate) { glider.offsetWidth; glider.style.transition = ""; }
+  };
+  const current = sw.querySelector(`[data-lang="${lang}"]`);
+  requestAnimationFrame(() => placeGlider(current, false));
+  addEventListener("resize", () => placeGlider(sw.querySelector('[aria-pressed="true"]'), false));
+  if (document.fonts) document.fonts.ready.then(() => placeGlider(sw.querySelector('[aria-pressed="true"]'), false));
+  sw.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-lang]");
+    if (!b || b.dataset.lang === lang) return;
+    const to = b.dataset.lang;
+    sw.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    placeGlider(b, true);
+    store.set("lang", to);
+    const url = new URL(location.href);
+    to === "nl" ? url.searchParams.delete("lang") : url.searchParams.set("lang", to);
+    const wipe = $(".lang-wipe"), r = b.getBoundingClientRect();
+    wipe.style.setProperty("--wx", r.left + r.width / 2 + "px"); wipe.style.setProperty("--wy", r.top + r.height / 2 + "px");
+    wipe.querySelector("span").textContent = window.PROFILES[to].langName;
+    wipe.setAttribute("dir", to === "ar" ? "rtl" : "ltr");
+    if (reduced) { location.href = url; return; }
+    wipe.classList.add("go");
+    setTimeout(() => { location.href = url; }, 900);
+  });
 
   // ---------- Pagina-overgang ----------
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a[href]");
     if (!a || reduced || e.metaKey || e.ctrlKey || e.shiftKey || a.target === "_blank") return;
     const href = a.getAttribute("href");
-    if (!/\.html(#.*)?$/.test(href) || href.startsWith("http")) return;
+    if (!/\.html(\?[^#]*)?(#.*)?$/.test(href) || href.startsWith("http")) return;
     e.preventDefault();
     $(".curtain").classList.add("leaving");
     setTimeout(() => { location.href = href; }, 420);
   });
-  addEventListener("pageshow", (e) => { if (e.persisted) $(".curtain").classList.remove("leaving"); });
+  addEventListener("pageshow", (e) => {
+    if (e.persisted) { $(".curtain").classList.remove("leaving"); $(".lang-wipe").classList.remove("go"); }
+  });
 
   // ---------- Inhoud per pagina ----------
   const photo = $("#photo");
   if (photo) {
-    const initials = () => { photo.innerHTML = `<div class="initials">${esc(P.firstName[0] + P.lastName[0])}</div>`; };
+    const initials = () => { photo.innerHTML = `<div class="initials">${esc(P.initials)}</div>`; };
     if (P.photo) {
-      const img = new Image(); img.alt = `Portretfoto van ${P.name}`; img.onerror = initials; img.src = P.photo; photo.appendChild(img);
+      const img = new Image(); img.alt = `${T.common.photoAlt} ${P.name}`; img.onerror = initials; img.src = P.photo; photo.appendChild(img);
     } else initials();
   }
 
@@ -99,13 +165,13 @@
   if (projWrap) {
     const onlyFeatured = projWrap.dataset.featured !== undefined;
     projWrap.innerHTML = P.projects.map((p, i) => ({ p, i })).filter(({ p }) => !onlyFeatured || p.featured).map(({ p, i }, k) => `
-      <article class="p-card reveal" style="transition-delay:${(k % 3) * 90}ms" data-tags="${esc(p.tags.join("|"))}">
-        <div class="p-inner tiltable" tabindex="0" role="button" data-index="${i}" aria-label="Meer over ${esc(p.title)}">
+      <article class="p-card reveal" style="transition-delay:${(k % 3) * 90}ms" data-cats="${esc((p.cats || []).join(" "))}">
+        <div class="p-inner tiltable" tabindex="0" role="button" data-index="${i}" aria-label="${esc(T.common.moreInfo)}: ${esc(p.title)}">
           <div class="glare"></div>
           <div class="p-top"><span class="p-num">${String(i + 1).padStart(2, "0")} / ${String(P.projects.length).padStart(2, "0")}</span><span class="p-icon">${p.icon}</span></div>
           <h3>${esc(p.title)}</h3><div class="p-ctx">${esc(p.context)}</div><p>${esc(p.text)}</p>
           <div class="p-tags">${p.tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>
-          <div class="p-more">Meer info →</div>
+          <div class="p-more">${esc(T.common.moreInfo)} <span class="arrow">→</span></div>
         </div>
       </article>`).join("");
   }
@@ -113,16 +179,13 @@
   // Filterknoppen op de projectenpagina
   const filters = $("#filters");
   if (filters) {
-    const cats = { "Alles": null, "Data & BI": ["Power BI", "Python", "Data Warehousing", "Excel"], "AI": ["AI", "Agentic AI", "Generative AI"], "UX & organisatie": ["UX-strategie", "UX", "Onboarding", "Projectmanagement", "Organisatie", "Procesverbetering"] };
-    filters.innerHTML = Object.keys(cats).map((c, i) => `<button type="button" class="${i ? "" : "on"}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+    const F = T.common.filters;
+    filters.innerHTML = ["all", "data", "ai", "ux"].map((c, i) => `<button type="button" class="${i ? "" : "on"}" data-cat="${c}">${esc(F[c])}</button>`).join("");
     filters.addEventListener("click", (e) => {
       const b = e.target.closest("button"); if (!b) return;
       filters.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
-      const want = cats[b.dataset.cat];
-      $$(".p-card").forEach((c) => {
-        const tags = c.dataset.tags.split("|");
-        c.classList.toggle("hide", !!want && !tags.some((t) => want.includes(t)));
-      });
+      const want = b.dataset.cat;
+      $$(".p-card").forEach((c) => c.classList.toggle("hide", want !== "all" && !c.dataset.cats.split(" ").includes(want)));
     });
   }
 
@@ -134,7 +197,7 @@
   const li = $("#linkedin-link"); if (li) li.href = P.linkedin;
   const copy = $("#copy-email");
   if (copy) copy.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(P.email); $("#copied").textContent = "✓ E-mailadres gekopieerd"; }
+    try { await navigator.clipboard.writeText(P.email); $("#copied").textContent = T.common.copied; }
     catch { $("#copied").textContent = P.email; }
   });
 
@@ -211,9 +274,10 @@
   // ---------- Projectdetails (modal) ----------
   const modal = $("#modal");
   if (modal) {
+    $("#modal-close").setAttribute("aria-label", T.common.close);
     const open = (i) => {
       const p = P.projects[i];
-      $("#modal-num").textContent = `${p.icon}  PROJECT ${String(i + 1).padStart(2, "0")}`;
+      $("#modal-num").textContent = `${p.icon}  ${T.common.project} ${String(i + 1).padStart(2, "0")}`;
       $("#modal-title").textContent = p.title; $("#modal-ctx").textContent = p.context; $("#modal-text").textContent = p.text;
       $("#modal-tags").innerHTML = p.tags.map((t) => `<span>${esc(t)}</span>`).join("");
       modal.classList.add("open"); $("#modal-close").focus();
