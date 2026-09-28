@@ -1,11 +1,13 @@
 /* ===================================================================
-   JOUW GEGEVENS — pas hier alle teksten van de website aan.
-   Alle pagina's halen hun inhoud uit dit bestand.
+   NEDERLANDS — pas hier de Nederlandse teksten van de website aan.
+   (Engels: en.js · Arabisch: ar.js — zelfde opbouw.)
    =================================================================== */
-window.PROFILE = {
+(window.PROFILES = window.PROFILES || {}).nl = {
+  langName: "Nederlands",
   name: "Omar Hassan",
   firstName: "Omar",
   lastName: "Hassan",
+  initials: "OM",
   location: "Amsterdam",
   availability: "Beschikbaar voor stage · feb – jun · Amsterdam",
   titleStart: "Business IT Management student —",
@@ -53,26 +55,27 @@ window.PROFILE = {
   ],
 
   // featured: true = ook tonen op de homepage
+  // cats: filtergroepen op de projectenpagina (data, ai, ux)
   projects: [
-    { icon: "🧭", featured: true, title: "UX-strategieproject", context: "PicApp Sweden AB · Brugge · feb – apr 2026",
+    { icon: "🧭", featured: true, cats: ["ux"], title: "UX-strategieproject", context: "PicApp Sweden AB · Brugge · feb – apr 2026",
       text: "Erasmus+ stage in Brugge: met een internationaal team de onboarding en gebruikersactivatie verbeterd van een Zweedse ride-sharing-app.",
       tags: ["UX-strategie", "Onboarding", "Erasmus+"] },
-    { icon: "📊", featured: true, title: "BI proof of concept & KPI-dashboard", context: "Inholland Bibliotheek · feb – jun 2026",
+    { icon: "📊", featured: true, cats: ["data"], title: "BI proof of concept & KPI-dashboard", context: "Inholland Bibliotheek · feb – jun 2026",
       text: "In teamverband een KPI-dashboard ontwikkeld met Power BI en Python, gebaseerd op Business Intelligence en Data Warehousing.",
       tags: ["Power BI", "Python", "Data Warehousing"] },
-    { icon: "🤖", featured: true, title: "AI-agent voor de assistent-manager", context: "Eigen project",
+    { icon: "🤖", featured: true, cats: ["ai"], title: "AI-agent voor de assistent-manager", context: "Eigen project",
       text: "Een AI-agent die de rol van assistent-manager ondersteunt op het gebied van servicekwaliteit, teamwork en organisatie.",
       tags: ["Agentic AI", "Generative AI", "Horeca"] },
-    { icon: "🌍", title: "BIP “Fabricated 2.0”", context: "Internationaal project · België",
+    { icon: "🌍", cats: ["ai"], title: "BIP “Fabricated 2.0”", context: "Internationaal project · België",
       text: "Samen met een internationaal team gewerkt aan duurzame technologie, AI, misinformatie en contentmoderatie.",
       tags: ["AI", "Duurzaamheid", "Internationaal"] },
-    { icon: "📦", title: "Voorraadbeheersysteem in Excel", context: "Bar Baggerbeest",
+    { icon: "📦", cats: ["data", "ux"], title: "Voorraadbeheersysteem in Excel", context: "Bar Baggerbeest",
       text: "Van een complex ontwerp met veel tabbladen naar een eenvoudig en praktisch systeem dat het personeel echt gebruikt.",
       tags: ["Excel", "Procesverbetering", "Gebruiksgemak"] },
-    { icon: "🎪", title: "Embrace Cultuurfestival", context: "Amsterdam · mei – jun 2026",
+    { icon: "🎪", cats: ["ux"], title: "Embrace Cultuurfestival", context: "Amsterdam · mei – jun 2026",
       text: "Met ons team een gratis cultuurfestival georganiseerd, gehouden op 20 juni 2026.",
       tags: ["Projectmanagement", "Organisatie", "Samenwerking"] },
-    { icon: "⚛️", title: "Interactief periodiek systeem", context: "React-component",
+    { icon: "⚛️", cats: ["ux"], title: "Interactief periodiek systeem", context: "React-component",
       text: "Een Nederlandstalig periodiek systeem als React-component, met zoeken, filteren en detailpanelen per element.",
       tags: ["React", "JavaScript", "UX"] }
   ],
@@ -86,10 +89,52 @@ window.PROFILE = {
   // percent = lengte van de balk
   languages: [
     { name: "Arabisch", label: "Moedertaal", percent: 100 },
-    { name: "Engels", label: "C1", percent: 85 },
+    { name: "Engels", label: "Vloeiend", percent: 95 },
     { name: "Turks", label: "C1", percent: 85 },
     { name: "Nederlands", label: "B2", percent: 68 }
   ],
 
-  contactText: "Heb je een stageplek, een interessant project of wil je gewoon kennismaken? Stuur me een e-mail of een bericht via LinkedIn. Ik reageer zo snel mogelijk."
+  contactText: "Heb je een stageplek, een interessant project of wil je gewoon kennismaken? Stuur me een e-mail of een bericht via LinkedIn. Ik reageer zo snel mogelijk.",
+
+  /* Vaste teksten van de pagina's */
+  ui: {
+    meta: {
+      home: ["Omar Hassan — Business IT Management", "Portfolio van Omar Hassan, student Business IT Management aan Hogeschool Inholland Amsterdam. Op zoek naar een stage in Amsterdam (februari – juni)."],
+      over: ["Over mij — Omar Hassan", "Over Omar Hassan: profiel, werkervaring, opleiding en certificaten."],
+      projecten: ["Projecten — Omar Hassan", "Projecten van Omar Hassan: BI-dashboards, AI-agents, UX-strategie en meer."],
+      vaardigheden: ["Vaardigheden — Omar Hassan", "Vaardigheden en talen van Omar Hassan."],
+      contact: ["Contact — Omar Hassan", "Neem contact op met Omar Hassan via e-mail of LinkedIn."]
+    },
+    nav: { home: "Home", over: "Over mij", projecten: "Projecten", vaardigheden: "Vaardigheden", contact: "Contact", cta: "Neem contact op" },
+    common: {
+      nextPage: "Volgende pagina", moreInfo: "Meer info", project: "PROJECT", copied: "✓ E-mailadres gekopieerd",
+      photoAlt: "Portretfoto van", menu: "Menu", close: "Sluiten", email: "E-mail", language: "Taal kiezen",
+      filters: { all: "Alles", data: "Data & BI", ai: "AI", ux: "UX & organisatie" }
+    },
+    home: {
+      scroll: "SCROLL", drag: "↻ SLEEP OM TE DRAAIEN", ctaContact: "Neem contact op", ctaProjects: "Bekijk projecten",
+      whoLabel: "Wie ik ben", moreAbout: "Meer over mij", featuredLabel: "Uitgelicht", featuredTitle: "Geselecteerd <em>werk</em>",
+      allProjects: "Alle projecten", exploreLabel: "Ontdek", exploreTitle: "Verken de <em>site</em>",
+      tileOver: "Profiel, werkervaring en opleiding", tileProjecten: "BI, AI, UX en organisatie",
+      tileSkills: "Vaardigheden en talen in 3D", tileContact: "Laten we kennismaken"
+    },
+    over: {
+      h1a: "Techniek die", h1b: "<em>mensen</em> helpt.",
+      intro: "Analytisch, kalm en ‘eerst denken, dan doen’: op het snijvlak van technologie, psychologie en strategie.",
+      chipStudy: "STUDIE", chipStudyText: "<b>Business IT</b> Management", chipBase: "BASIS", chipBaseText: "<b>Amsterdam</b> · NL",
+      profileLabel: "Profiel", expLabel: "Werkervaring", expTitle: "Ervaring in de <em>praktijk</em>",
+      expNote: "Naast mijn studie leer ik in de horeca en de hotellerie hoe je teams, gasten en processen soepel laat lopen.",
+      eduLabel: "Opleiding", eduTitle: "Leren &amp; <em>groeien</em>", certs: "Certificaten &amp; vrijwilligerswerk"
+    },
+    projecten: {
+      h1a: "Geselecteerd", h1b: "werk",
+      intro: "Van KPI-dashboards en AI-agents tot UX-strategie en een cultuurfestival. Beweeg over een kaart om hem in 3D te kantelen; klik voor details."
+    },
+    vaardigheden: {
+      h1a: "Wat ik", h1b: "<em>meebreng</em>",
+      intro: "Data, het Power Platform en bedrijfsprocessen — plus vier talen.",
+      drag: "Sleep de bol om te draaien", langs: "Talen"
+    },
+    contact: { h1a: "Laten we", h1b: "<em>praten</em>.", copy: "E-mail kopiëren" }
+  }
 };

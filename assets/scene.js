@@ -100,7 +100,8 @@ function init(canvas) {
     const w = canvas.clientWidth, h = canvas.clientHeight, wide = w > 900;
     renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
     const center = variant === "contact";
-    world.position.set(center ? 0 : wide ? 3.6 : 0, center ? 0 : wide ? 0 : 1.4, 0);
+    const side = document.documentElement.dir === "rtl" ? -1 : 1; // Arabisch: bol links, tekst rechts
+    world.position.set(center ? 0 : wide ? 3.6 * side : 0, center ? 0 : wide ? 0 : 1.4, 0);
     camera.position.set(0, 0, center ? 15 : wide ? (variant === "home" ? 13 : 14) : 17);
   }
   addEventListener("resize", resize); resize();
