@@ -86,7 +86,7 @@ window.PROFILE = {
   // percent = lengte van de balk
   languages: [
     { name: "Arabisch", label: "Moedertaal", percent: 100 },
-    { name: "Engels", label: "C1", percent: 85 },
+    { name: "Engels", label: "Vloeiend", percent: 95 },
     { name: "Turks", label: "C1", percent: 85 },
     { name: "Nederlands", label: "B2", percent: 68 }
   ],
