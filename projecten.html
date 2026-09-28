@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projecten — Omar Hassan</title>
+  <meta name="description" content="Projecten van Omar Hassan: BI-dashboards, AI-agents, UX-strategie en meer.">
+  <meta name="theme-color" content="#06080d">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="projecten">
+  <main>
+    <section class="page-hero">
+      <canvas id="scene" data-variant="projecten" aria-hidden="true"></canvas>
+      <div class="container">
+        <span class="crumb fade-in" style="animation-delay:.3s"><b>02</b> / Projecten</span>
+        <h1><span class="split"><span>Geselecteerd</span></span><span class="split outline"><span>werk</span></span></h1>
+        <p class="fade-in" style="animation-delay:.8s">Van KPI-dashboards en AI-agents tot UX-strategie en een cultuurfestival. Beweeg over een kaart om hem in 3D te kantelen; klik voor details.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="filters reveal" id="filters" role="toolbar" aria-label="Filter projecten"></div>
+        <div class="projects" id="projects"></div>
+      </div>
+    </section>
+
+    <div id="next-page"></div>
+  </main>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Sluiten">✕</button>
+      <span class="p-num" id="modal-num"></span><h3 id="modal-title"></h3><div class="p-ctx" id="modal-ctx"></div>
+      <p id="modal-text"></p><div class="p-tags" id="modal-tags"></div>
+    </div>
+  </div>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/main.js"></script>
+  <script type="module" src="assets/scene.js"></script>
+</body>
+</html>
