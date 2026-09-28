@@ -36,6 +36,10 @@ bijvoorbeeld `https://alain202020.github.io/my-website-/?lang=en`.
 - Menu, taalknop, animaties en interactie: `assets/main.js`.
 - Foto: `assets/omar.jpg`. Zet `photo: ""` om je initialen te tonen.
 
+**Na een wijziging in `assets/`:** verhoog in alle 5 HTML-bestanden het getal achter `?v=`
+(bijvoorbeeld `?v=5` → `?v=6`). Dan laden bezoekers meteen de nieuwe versie in plaats van een
+oude kopie uit het geheugen van hun browser.
+
 ## Online zetten met GitHub Pages
 
 1. Ga naar **Settings → Pages** van deze repository.
