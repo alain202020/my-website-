@@ -1,18 +1,28 @@
 # Omar Hassan — persoonlijke website
 
-Persoonlijke website met informatie over mij (profiel, projecten, werkervaring, opleiding,
-vaardigheden) en een formulier om een afspraak te maken.
+Interactieve portfolio-website met meerdere pagina's en 3D-effecten (Three.js).
+Gemaakt met HTML, CSS en JavaScript — geen build-stap nodig.
 
-Alles staat in **één bestand**: `index.html` (HTML, CSS en JavaScript). Geen build-stap nodig.
+## Pagina's
+
+| Bestand | Pagina |
+| --- | --- |
+| `index.html` | Home: 3D-datanetwerk, intro, uitgelichte projecten |
+| `over-mij.html` | Profiel, werkervaring (tijdlijn), opleiding en certificaten |
+| `projecten.html` | Alle projecten als 3D-kantelkaarten, met filters en details |
+| `vaardigheden.html` | Draaiende 3D-bol met vaardigheden, talen |
+| `contact.html` | E-mail en LinkedIn |
 
 ## Teksten aanpassen
 
-Open `index.html` en zoek naar `const PROFILE = {` (onderaan het bestand).
-Daar staan al je gegevens: naam, titel, over mij, werkervaring, opleiding, projecten,
-vaardigheden, talen, e-mail en LinkedIn. Pas de tekst tussen de aanhalingstekens aan en sla op.
+Alle teksten staan in **`assets/data.js`**: naam, titel, over mij, werkervaring, opleiding,
+projecten, vaardigheden, talen, e-mail en LinkedIn. Pas de tekst tussen de aanhalingstekens
+aan en sla op; alle pagina's worden automatisch bijgewerkt.
 
-- Kleuren aanpassen: bovenaan in `<style>` bij `:root` (`--primary` en `--accent`).
-- Foto: `assets/omar.jpg`. Zet `photo: ""` om je initialen te tonen.
+- Kleuren en lettertypes: `assets/style.css`, bovenaan bij `:root` (`--mint` en `--amber`).
+- 3D-scène: `assets/scene.js`.
+- Menu, animaties en interactie: `assets/main.js`.
+- Foto: `assets/omar.jpg`. Zet `photo: ""` in `data.js` om je initialen te tonen.
 
 ## Online zetten met GitHub Pages
 
@@ -23,4 +33,11 @@ vaardigheden, talen, e-mail en LinkedIn. Pas de tekst tussen de aanhalingstekens
 
 ## Lokaal bekijken
 
-Open `index.html` in je browser (dubbelklikken is genoeg).
+De 3D-scène gebruikt een JavaScript-module; die werkt niet als je het bestand direct opent.
+Start daarom een kleine server in deze map:
+
+```
+python3 -m http.server
+```
+
+en open daarna `http://localhost:8000`.
