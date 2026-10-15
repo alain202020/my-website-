@@ -103,7 +103,10 @@ function init(canvas) {
     const side = document.documentElement.dir === "rtl" ? -1 : 1; // Arabisch: bol links, tekst rechts
     world.position.set(center ? 0 : wide ? 3.6 * side : 0, center ? 0 : wide ? 0 : 1.4, 0);
     camera.position.set(0, 0, center ? 15 : wide ? (variant === "home" ? 13 : 14) : 17);
+    // Staat de bol achter de tekst (contact, of middelgroot scherm)? Dan wat zachter tonen.
+    baseOpacity = w >= 760 && (center || !wide) ? 0.45 : 1;
   }
+  let baseOpacity = 1;
   addEventListener("resize", resize); resize();
 
   let visible = true;
@@ -131,7 +134,7 @@ function init(canvas) {
     // Bij scrollen zakt de scène weg en vervaagt hij
     const s = Math.min(scrollY / innerHeight, 1);
     world.position.z = -s * 6;
-    canvas.style.opacity = 1 - s * 0.8;
+    canvas.style.opacity = baseOpacity * (1 - s * 0.8);
     renderer.render(scene, camera);
   })();
 }

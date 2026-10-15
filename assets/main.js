@@ -143,7 +143,7 @@
 
   const fill = (sel, html) => { const el = $(sel); if (el) el.innerHTML = html; };
   fill("#about-text", P.about.map((p) => `<p>${p}</p>`).join(""));
-  fill("#stats", P.stats.map((s) => `<div class="stat"><div class="n"><span data-count="${s.n}">0</span><sup>${esc(s.suffix)}</sup></div><div class="t">${esc(s.label)}</div></div>`).join(""));
+  fill("#stats", P.stats.map((s) => `<div class="stat"><div class="n"><span data-count="${s.n}">${s.n}</span><sup>${esc(s.suffix)}</sup></div><div class="t">${esc(s.label)}</div></div>`).join(""));
   fill("#interests", P.interests.map((i) => `<li>${esc(i)}</li>`).join(""));
 
   const allSkills = P.skills.flatMap((g) => g.items);

@@ -321,7 +321,7 @@ h2 { font-size: clamp(2.3rem, 5.5vw, 4.4rem); font-weight: 800; }
 /* Vaardigheden: 3D-bol */
 .skills-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
 @media (max-width: 960px) { .skills-grid { grid-template-columns: 1fr; } }
-.sphere-wrap { position: relative; aspect-ratio: 1; width: min(540px, 100%); margin: 0 auto; cursor: grab; touch-action: pan-y; }
+.sphere-wrap { position: relative; isolation: isolate; z-index: 0; aspect-ratio: 1; width: min(540px, 100%); margin: 0 auto; cursor: grab; touch-action: pan-y; }
 .sphere-wrap:active { cursor: grabbing; }
 .sphere-wrap::before { content: ""; position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, rgba(124,255,178,.12), transparent 65%); }
 .sphere-tag { position: absolute; left: 50%; top: 50%; white-space: nowrap; font-weight: 700; font-size: clamp(.8rem, 1.6vw, 1rem); user-select: none; }
@@ -395,3 +395,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted)
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* Leesbaarheid: tekst blijft goed leesbaar boven de 3D-bol */
+.page-hero h1, .page-hero p, .contact-hero h1, .contact-hero p, .hero h1, .hero p { text-shadow: 0 2px 20px rgba(6, 8, 13, .95), 0 0 6px rgba(6, 8, 13, .8); }
+.contact-hero p { color: var(--text); }
