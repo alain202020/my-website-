@@ -101,7 +101,7 @@
     },
     nav: { home: "Home", over: "About me", projecten: "Projects", vaardigheden: "Skills", contact: "Contact", cta: "Get in touch" },
     common: {
-      nextPage: "Next page", moreInfo: "More info", project: "PROJECT", copied: "✓ Email address copied",
+      nextPage: "Next page", cv: "Download CV", moreInfo: "More info", project: "PROJECT", copied: "✓ Email address copied",
       photoAlt: "Portrait of", menu: "Menu", close: "Close", email: "Email", language: "Choose language",
       filters: { all: "All", data: "Data & BI", ai: "AI", ux: "UX & organisation" }
     },
