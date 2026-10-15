@@ -292,14 +292,20 @@
   const modal = $("#modal");
   if (modal) {
     $("#modal-close").setAttribute("aria-label", T.common.close);
+    // Pagina op slot zetten zolang het venster open is (niet meescrollen)
+    const lockScroll = (on) => {
+      const root = document.documentElement;
+      root.style.paddingRight = on ? (innerWidth - root.clientWidth) + "px" : "";
+      root.style.overflow = on ? "hidden" : "";
+    };
     const open = (i) => {
       const p = P.projects[i];
       $("#modal-num").textContent = `${p.icon}  ${T.common.project} ${String(i + 1).padStart(2, "0")}`;
       $("#modal-title").textContent = p.title; $("#modal-ctx").textContent = p.context; $("#modal-text").textContent = p.text;
       $("#modal-tags").innerHTML = p.tags.map((t) => `<span>${esc(t)}</span>`).join("");
-      modal.classList.add("open"); $("#modal-close").focus();
+      modal.classList.add("open"); lockScroll(true); $("#modal-close").focus();
     };
-    const close = () => modal.classList.remove("open");
+    const close = () => { if (!modal.classList.contains("open")) return; modal.classList.remove("open"); lockScroll(false); };
     $$(".p-inner").forEach((el) => {
       el.addEventListener("click", () => open(+el.dataset.index));
       el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(+el.dataset.index); } });
