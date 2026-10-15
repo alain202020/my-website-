@@ -399,3 +399,19 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted)
 /* Leesbaarheid: tekst blijft goed leesbaar boven de 3D-bol */
 .page-hero h1, .page-hero p, .contact-hero h1, .contact-hero p, .hero h1, .hero p { text-shadow: 0 2px 20px rgba(6, 8, 13, .95), 0 0 6px rgba(6, 8, 13, .8); }
 .contact-hero p { color: var(--text); }
+
+/* Cv downloaden: knop met taalkeuze */
+.cv-dl { position: relative; display: inline-block; pointer-events: auto; }
+.cv-caret { font-size: .8em; transition: transform .2s; }
+.cv-dl.open .cv-caret { transform: rotate(180deg); }
+.cv-menu { position: absolute; top: calc(100% + 8px); left: 50%; transform: translate(-50%, -6px); min-width: 100%; z-index: 20;
+  display: grid; gap: 4px; padding: 6px; border-radius: 18px; border: 1px solid var(--line); background: #10141c;
+  backdrop-filter: blur(12px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+.cv-dl.open .cv-menu { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+.cv-menu a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 16px; border-radius: 12px;
+  font-weight: 600; color: var(--text); white-space: nowrap; text-align: start; }
+.cv-menu a:hover, .cv-menu a:focus-visible { background: rgba(124, 255, 178, .12); color: var(--mint); }
+.cv-menu small { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+.about-text .cv-dl { margin-top: 28px; }
+.about-text .cv-menu { left: 0; transform: translateY(-6px); }
+.about-text .cv-dl.open .cv-menu { transform: none; }

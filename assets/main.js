@@ -201,6 +201,23 @@
     catch { $("#copied").textContent = P.email; }
   });
 
+  // ---------- Cv downloaden: knop met taalkeuze ----------
+  const CVS = [
+    { lang: "nl", label: "Nederlands", href: "assets/cv/CV-Omar-Hassan-NL.pdf" },
+    { lang: "en", label: "English", href: "assets/cv/CV-Omar-Hassan-EN.pdf" }
+  ];
+  $$("[data-cv]").forEach((box, k) => {
+    box.classList.add("cv-dl");
+    box.innerHTML = `<button type="button" class="btn btn-outline" aria-expanded="false" aria-controls="cv-menu-${k}">⤓ ${esc(T.common.cv)} <span class="cv-caret">▾</span></button>
+      <div class="cv-menu" id="cv-menu-${k}">${CVS.map((c) => `<a href="${c.href}" download lang="${c.lang}" target="_blank" rel="noopener">${esc(c.label)} <small>PDF</small></a>`).join("")}</div>`;
+    const btn = box.querySelector("button");
+    btn.addEventListener("click", (e) => { e.stopPropagation(); btn.setAttribute("aria-expanded", box.classList.toggle("open")); });
+  });
+  document.addEventListener("click", (e) => {
+    $$(".cv-dl.open").forEach((b) => { if (!b.contains(e.target)) { b.classList.remove("open"); b.querySelector("button").setAttribute("aria-expanded", "false"); } });
+  });
+  addEventListener("keydown", (e) => { if (e.key === "Escape") $$(".cv-dl.open").forEach((b) => { b.classList.remove("open"); b.querySelector("button").setAttribute("aria-expanded", "false"); }); });
+
   // ---------- Getypte titel (home) ----------
   const typed = $("#typed");
   if (typed) {
